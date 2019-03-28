@@ -289,3 +289,33 @@ function insertionSort(arr) {
 }
 ```
 
+## 桶排序
+
+```js
+function bucketSort(arr) {
+  if (Object.prototype.toString.call(arr).toLowerCase() !== '[object array]') {
+    console.error('Function bucketSort got incorrect argument')
+    return
+  }
+  // 声明一个空桶, 将数据压入桶中
+  const bucket = []
+  arr.forEach((one) => {
+    if (bucket[one] !== undefined) {
+      bucket[one]++
+    } else {
+      bucket[one] = 1
+    }
+  });
+  // 声明一个新数组, 当做排序后的数组
+  const newArr = []
+  bucket.forEach((one, index) => {
+    if (one !== undefined) {
+      for (let i = 0; i < one; i++) {
+        newArr.push(index)
+      }
+    }
+  })
+  
+  return newArr
+}
+```
