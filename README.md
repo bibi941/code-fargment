@@ -319,3 +319,19 @@ function bucketSort(arr) {
   return newArr
 }
 ```
+## 一个无序数组中两个数之和等于给定的值sum
+```js
+let array = [12, 9, 3, 7, 5, 6, 11, 2, 12, 32, 45];
+
+var twoSum = function(arr, target) {
+  var a = {}
+  for (var i = 0; i < arr.length; i++) {
+    var tmp = target - arr[i]
+    if (a[tmp]) {
+      return [a[tmp], i]
+    }
+    a[arr[i]] = i
+  }
+}
+console.log(twoSum(array,8))
+```
