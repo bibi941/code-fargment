@@ -41,5 +41,25 @@ describe('deepClone',() => {
       assert(a1.child !== a2.child)
       assert(a1.child.name === a2.child.name)
     })
+    it('能够复制数组 ',() => {
+      const a1 = [[11,12],[22,23]]
+      const a2 = deepClone(a1)
+      assert(a1 !== a2)
+      assert(a1[0] !== a2[0])
+      assert(a1[1] !== a2[1])
+      assert.deepEqual(a1,a2)
+    })
+    it('能够复制函数',() => {
+      const fn1 = (a,b) => {
+        return a + b
+      }
+      fn1.attr = { name: 'bibi',age: 18 }
+      const fn2 = deepClone(fn1)
+      assert(fn1 !== fn2)
+      assert(fn1.attr !== fn2.attr)
+      assert(fn1.attr.name === fn2.attr.name)
+      assert(fn1.attr.age === fn2.attr.age)
+      assert(fn1(1,2) === fn2(2,1))
+    })
   })
 })
