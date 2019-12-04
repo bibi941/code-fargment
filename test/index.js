@@ -61,5 +61,13 @@ describe('deepClone',() => {
       assert(fn1.attr.age === fn2.attr.age)
       assert(fn1(1,2) === fn2(2,1))
     })
+    it('能够复制环',() => {
+      const a1 = { name: 'bibi' }
+      a1.self = a1
+      const a2 = deepClone(a1)
+      assert(a1 !== a2)
+      assert(a1.name === a2.name)
+      assert(a1.self !== a2.self)
+    })
   })
 })
