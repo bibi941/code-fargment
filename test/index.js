@@ -69,5 +69,34 @@ describe('deepClone',() => {
       assert(a1.name === a2.name)
       assert(a1.self !== a2.self)
     })
+    xit('不会暴栈,能够复制超深对象',() => {
+      const a = { child: null }
+      let b = a
+      for (let i = 0; i < 20000; i++) {
+        b.child = { child: null }
+        b = b.child
+      }
+      console.log(a)
+      const a2 = deepClone(a)
+      assert(a !== a2)
+      assert(a.child !== a2.child)
+    })
+    it('能复制正则表达式',() => {
+      const a = /hi\d+/gi
+      a.name = 'bibi'
+      const a2 = deepClone(a)
+      assert(a !== a2)
+      assert(a.name === a2.name)
+      assert(a.source === a2.source)
+      assert(a.flags === a2.flags)
+    })
+    it('能复制正则日期',() => {
+      const a = new Date()
+      a.name = 'bibi'
+      const a2 = deepClone(a)
+      assert(a !== a2)
+      assert(a.getTime() === a2.getTime())
+      assert(a.name === a2.name)
+    })
   })
 })

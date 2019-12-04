@@ -18,16 +18,17 @@ function deepClone(source) {
       return cacheResult
     } else { // 无缓存
       let result
-      // 数组
-      if (source instanceof Array) {
+      if (source instanceof Array) {// 数组
         result = []
-        // 函数
-      } else if (source instanceof Function) {
+      } else if (source instanceof Function) {// 函数
         result = function () {
           return source.call(this,...arguments)
         }
-        // 普通对象
-      } else {
+      } else if (source instanceof RegExp) {// 正则表达式
+        result = new RegExp(source.source,source.flags)
+      } else if (source instanceof Date) {//日期
+        result = new Date(source)
+      } else { // 普通对象
         result = {}
       }
       cache.push([source,result])
