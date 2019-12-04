@@ -33,7 +33,7 @@ function deepClone(source) {
       }
       cache.push([source,result])
       for (let key in source) {
-        result[key] = deepClone(source[key])
+        if (source.hasOwnProperty(key)) result[key] = deepClone(source[key]) //不复制原型树属性
       }
       return result
     }

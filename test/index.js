@@ -98,5 +98,13 @@ describe('deepClone',() => {
       assert(a.getTime() === a2.getTime())
       assert(a.name === a2.name)
     })
+    it('跳过原型属性 ',() => {
+      const a = Object.create({ name: 'bibi' })
+      a.age = 18
+      const a2 = deepClone(a)
+      assert(a !== a2)
+      assert.isFalse('name' in a2)
+      assert(a.age === a2.age)
+    })
   })
 })
