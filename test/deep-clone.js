@@ -1,7 +1,7 @@
 const chai = require('chai')
 const sinon = require('sinon')
 const sinonChai = require('sinon-chai')
-const deepClone = require('../src/index')
+const deepClone = require('../src/deep-clone')
 chai.use(sinonChai)
 const assert = chai.assert
 
