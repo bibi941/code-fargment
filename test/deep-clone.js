@@ -1,13 +1,9 @@
-const chai = require('chai')
-const sinon = require('sinon')
-const sinonChai = require('sinon-chai')
+const assert = require('./config')
 const deepClone = require('../src/deep-clone')
-chai.use(sinonChai)
-const assert = chai.assert
 
-describe('new deepClone().clone',() => {
+describe('深拷贝',() => {
   it('是一个类 ',() => {
-    assert.isFunction( deepClone)
+    assert.isFunction(deepClone)
   })
   it('可以复制基本类型',() => {
     // number
@@ -80,7 +76,6 @@ describe('new deepClone().clone',() => {
         b.child = { child: null }
         b = b.child
       }
-      console.log(a)
       const a2 = new deepClone().clone(a)
       assert(a !== a2)
       assert(a.child !== a2.child)
