@@ -4,9 +4,17 @@ function _bind(asThis,...args) {
   if (!fn instanceof Function) {
     throw new Error('请在函数上绑定')
   }
-  return function (...args2) {
-    return fn.call(asThis,...args,...args2)
+
+  function resultFn(...args2) {
+    return fn.call(
+      resultFn.prototype.isPrototypeOf(this)  ? this : asThis,
+      ...args,
+      ...args2
+    )
   }
+
+  resultFn.prototype = fn.prototype
+  return resultFn
 }
 
 // Es5
@@ -31,4 +39,3 @@ if (Function.prototype.bind) {
 } else {
   Function.prototype.bind = _bind2
 }
-
