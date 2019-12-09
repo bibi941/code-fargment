@@ -1,15 +1,23 @@
 {
-  "name": "deepclone",
+  "name": "code-fargment",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test": "mocha test/**/*.js"
+    "test": "mocha test/**/*.js",
+    "test-ts": "mocha -r ts-node/register test/**/*.ts"
   },
   "dependencies": {
     "chai": "^4.2.0",
-    "mocha": "^6.2.0",
+    "global": "^4.4.0",
+    "mocha": "^6.2.2",
     "sinon": "^7.4.1",
-    "sinon-chai": "^3.3.0"
+    "sinon-chai": "^3.3.0",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.3"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.6",
+    "@types/mocha": "^5.2.7"
   }
 }
