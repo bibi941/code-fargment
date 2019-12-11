@@ -31,5 +31,18 @@ describe('Promise',() => {
       assert.isFunction(reject)
     })
   })
-
+  it('promise.then(success)中的 success 会在 resolve 被调用的时候执行',(down) => {
+    let isCall = false
+    const promise = new Promise((resolve,reject) => {
+      assert(isCall === false)
+      resolve()
+      setTimeout(() => {
+        assert(isCall === true)
+        down()
+      })
+    })
+    promise.then(() => {
+      isCall = true
+    })
+  })
 })

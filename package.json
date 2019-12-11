@@ -4,8 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "test": "mocha test/**/*.js",
-    "test-ts": "mocha -r ts-node/register test/**/*.ts"
+    "test": "mocha -r ts-node/register test/**/*.ts  test/**/*.js"
   },
   "dependencies": {
     "chai": "^4.2.0",
