@@ -27,6 +27,10 @@
   version "0.7.1"
   resolved "https://registry.npm.taobao.org/@sinonjs/text-encoding/download/@sinonjs/text-encoding-0.7.1.tgz#8da5c6530915653f3a1f38fd5f101d8c3f8079c5"
 
+"@types/chai@*":
+  version "4.2.7"
+  resolved "https://registry.npm.taobao.org/@types/chai/download/@types/chai-4.2.7.tgz?cache=0&sync_timestamp=1576008370923&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fchai%2Fdownload%2F%40types%2Fchai-4.2.7.tgz#1c8c25cbf6e59ffa7d6b9652c78e547d9a41692d"
+
 "@types/chai@^4.2.6":
   version "4.2.6"
   resolved "https://registry.npm.taobao.org/@types/chai/download/@types/chai-4.2.6.tgz?cache=0&sync_timestamp=1575343987972&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fchai%2Fdownload%2F%40types%2Fchai-4.2.6.tgz#a55625d151d9c7c7a0a95920632131d66480bce9"
@@ -34,6 +38,17 @@
 "@types/mocha@^5.2.7":
   version "5.2.7"
   resolved "https://registry.npm.taobao.org/@types/mocha/download/@types/mocha-5.2.7.tgz#315d570ccb56c53452ff8638738df60726d5b6ea"
+
+"@types/sinon-chai@^3.2.3":
+  version "3.2.3"
+  resolved "https://registry.npm.taobao.org/@types/sinon-chai/download/@types/sinon-chai-3.2.3.tgz#afe392303dda95cc8069685d1e537ff434fa506e"
+  dependencies:
+    "@types/chai" "*"
+    "@types/sinon" "*"
+
+"@types/sinon@*", "@types/sinon@^7.5.1":
+  version "7.5.1"
+  resolved "https://registry.npm.taobao.org/@types/sinon/download/@types/sinon-7.5.1.tgz#d27b81af0d1cfe1f9b24eebe7a24f74ae40f5b7c"
 
 ansi-colors@3.2.3:
   version "3.2.3"
@@ -522,7 +537,7 @@ sinon-chai@^3.3.0:
   version "3.3.0"
   resolved "https://registry.npm.taobao.org/sinon-chai/download/sinon-chai-3.3.0.tgz#8084ff99451064910fbe2c2cb8ab540c00b740ea"
 
-sinon@^7.4.1:
+sinon@^7.5.0:
   version "7.5.0"
   resolved "https://registry.npm.taobao.org/sinon/download/sinon-7.5.0.tgz#e9488ea466070ea908fd44a3d6478fd4923c67ec"
   dependencies:
