@@ -6,6 +6,7 @@ chai.use(sinonChai)
 
 const assert = chai.assert
 import Promise from '../src/promise'
+import instantiate = WebAssembly.instantiate
 
 describe('Promise',() => {
   it('是一个类',() => {
@@ -104,7 +105,7 @@ describe('Promise',() => {
         assert(this === undefined)
       })
     })
-    it('2.2.6-then可以在同一个promise里被多次调用',(done) => {
+    it('2.2.6-成功-then可以在同一个promise里被多次调用',(done) => {
       const fnLists = [sinon.fake(),sinon.fake(),sinon.fake()]
       const promise = new Promise((resolve) => {
         resolve()
@@ -112,13 +113,51 @@ describe('Promise',() => {
       promise.then(fnLists[0])
       promise.then(fnLists[1])
       promise.then(fnLists[2])
-      setTimeout(()=>{
+      setTimeout(() => {
         assert(fnLists[0].called)
         assert(fnLists[1].called)
         assert(fnLists[2].called)
         assert(fnLists[1].calledAfter(fnLists[0]))
         assert(fnLists[2].calledAfter(fnLists[1]))
         done()
+      })
+    })
+    it('2.2.6-失败-then可以在同一个promise里被多次调用',(done) => {
+      const fnLists = [sinon.fake(),sinon.fake(),sinon.fake()]
+      const promise = new Promise((resolve,reject) => {
+        reject()
+      })
+      promise.then(null,fnLists[0])
+      promise.then(null,fnLists[1])
+      promise.then(null,fnLists[2])
+      setTimeout(() => {
+        assert(fnLists[0].called)
+        assert(fnLists[1].called)
+        assert(fnLists[2].called)
+        assert(fnLists[1].calledAfter(fnLists[0]))
+        assert(fnLists[2].calledAfter(fnLists[1]))
+        done()
+      })
+    })
+
+    describe('2.2.7',() => {
+      it('2.2.7.0-then必须返回一个promise',() => {
+        const promise = new Promise(() => {})
+        const promise1 = promise.then(() => {})
+        assert(promise1 instanceof Promise)
+      })
+      it('2.2.7.1- 如果onFulfilled或onRejected返回一个值x(基本数据结构), 运 [[Resolve]](promise2, x),测试 then 链',() => {
+        const promise1 = new Promise(() => {})
+        const promise2 = promise1.then(() => 'ok',() => {})
+        promise2.then(result => assert(result === 'ok'))
+      })
+      it('2.2.7.1 - x 是一个 promise',() => {
+
+      })
+      it('2.2.7.2 -如果onFulfilled或onRejected抛出一个异常e,promise2 必须被拒绝（rejected）并把e当作原因',() => {
+        const promise1 = new Promise(() => {})
+        const promise2 = promise1.then(() => {},() => 'no')
+        promise2.then(() => {},reason => assert(reason === 'no'))
       })
     })
   })
